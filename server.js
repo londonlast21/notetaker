@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 
-// GET paths
+// GET HTML route paths
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "mainPage", "index.html"));
 });
@@ -29,6 +29,24 @@ app.get("/notes", (req, res) => {
 app.get("/api/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/data/db.json"))
 });
+app.get
+
+// GET api route
+app.get("/notes", (req, res) => {
+    let results = notes;
+    res.json(results);
+});
+
+
+
+// POST api route
+app.post("/api/notes", (req, res) => {
+    //set new id for each created note
+    req.body.id = notes.length.toString() {
+        const note = createNewNote(req.body, notes);
+        res.json(note);
+    }
+})
 
 
 // listen for server
