@@ -163,6 +163,7 @@ var deleteNote = function(id) {
 // add route to note data
 app.get('/api/db', (req, res) => {
   res.json(notes);
+  console.log(notes);
 })
 
 
