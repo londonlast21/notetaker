@@ -1,20 +1,28 @@
-// require express
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
-// set up the server
+const PORT = process.env.PORT || 3001;
+
+
 const app = express();
 
 // require the html files i need to access
+
+/// need to uncomment line below this
 //const { index } = require('./public/index');
 const { notes } = require ('./db/db');
 
+// comment out
 // var $noteTitle = $(".note-title");
 // var $noteText = $(".note-textarea");
 // var $saveNoteBtn = $(".save-note");
 // var $newNoteBtn = $(".new-note");
 // var $noteList = $(".list-container .list-group");
 
-// activeNote is used to keep track of the note in the textarea
-var activeNote = {};
+// // activeNote is used to keep track of the note in the textarea
+// var activeNote = {};
+
+// end comment out
 
 // A function for getting all notes from the db
 var getNotes = function() {
@@ -154,12 +162,12 @@ var deleteNote = function(id) {
 
 // add route to note data
 app.get('/api/db', (req, res) => {
-  res.send('Hello!');
+  res.json(notes);
 })
 
 
 
 // listen for server
-app.listen(3001, () => {
-  console.log(`API server now on port 3001!`);
+app.listen(PORT, () => {
+  console.log(`API server now on port ${PORT}!`);
 });
