@@ -4,8 +4,8 @@ const express = require('express');
 const app = express();
 
 // require the html files i need to access
-const { index } = require('./Develop/public/index');
-const { notes } = require ('./Develop/public/notes');
+const { index } = require('./public/index');
+const { notes } = require ('./public/notes');
 
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
