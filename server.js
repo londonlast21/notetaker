@@ -18,15 +18,17 @@ app.use(express.urlencoded({extended: true}));
 // parse incoming JSON data
 app.use(express.json());
 
-app.get("/", (req, res) => {
+
+// GET paths
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "mainPage", "index.html"));
 });
-
 app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "/data/db.json"));
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
-
-
+app.get("/api/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "/data/db.json"))
+});
 
 
 // listen for server
