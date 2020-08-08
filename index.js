@@ -1,10 +1,5 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const PORT = process.env.PORT || 3001;
 
 
-const app = express();
 
 // require the html files i need to access
 
@@ -160,15 +155,7 @@ var deleteNote = function(id) {
 // getAndRenderNotes();
 
 
-// add route to note data
-app.get('/api/db', (req, res) => {
-  res.json(notes);
-  console.log(notes);
-})
 
 
 
-// listen for server
-app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}!`);
-});
+
