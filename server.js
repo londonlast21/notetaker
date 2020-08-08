@@ -1,12 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-//const routes = require("./routes");
+const { notes } = require ('./data/db');
 
 
 // create the express server
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const mainPage = path.join(__dirname, "/public");
+
 
 
 app.use(express.static('public'));
@@ -14,15 +17,17 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 // parse incoming JSON data
 app.use(express.json());
-// app.use('/api', apiRoutes);
-// app.use('/', htmlRoutes);
 
-
-// add route to note data
-app.get('/api/db', (req, res) => {
-    res.json(notes);
-  
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "mainPage", "index.html"));
 });
+
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "/data/db.json"));
+});
+
+
+
 
 // listen for server
 app.listen(PORT, () => {
