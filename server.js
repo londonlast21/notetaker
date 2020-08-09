@@ -19,25 +19,14 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 
-// GET HTML route paths
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
-});
-app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/notes.html"));
-});
+// api routes
+
 app.get("/api/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/data/db.json"))
 });
 app.get("/api/notes/:id", function(req, res) {
     let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     res.json(savedNotes[Number(req.params.id)]);
-});
-
-// GET api route
-app.get("/notes", (req, res) => {
-    let results = notes;
-    res.json(results);
 });
 
 
@@ -54,6 +43,25 @@ app.post("/api/notes", (req, res) => {
     console.log("Note saved");
     res.json(savedNotes);
 });
+
+
+// DELETE notes
+// app.delete("/api/notes/:id", (req, res) => {
+
+// })
+
+
+
+/// html routes
+
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
+});
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+
 
 
 // listen for server
